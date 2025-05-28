@@ -43,7 +43,12 @@ namespace prySchwartz_IEFI
 
         private void frmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
         {
-           Environment.Exit(0);
+            DateTime horaCierre = DateTime.Now;
+            TimeSpan duracion = horaCierre - ((frmInicioSesion)Application.OpenForms["frmInicioSesion"]).horaInicio;
+
+            clsConexion conexion = new clsConexion();
+            conexion.auditarAcceso(nombreUsuario, ((frmInicioSesion)Application.OpenForms["frmInicioSesion"]).horaInicio, horaCierre, duracion);
+            Environment.Exit(0);
         }
     }
 }

@@ -64,18 +64,14 @@ namespace prySchwartz_IEFI
                 if (intentosFallidos >= 3)
                 {
                     MessageBox.Show("Demasiados intentos. La app se cerrará.");
-                    Environment.Exit(0);
+                    Application.Exit();
                 }
             }
         }
 
         private void frmInicioSesion_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DateTime horaCierre = DateTime.Now;
-            TimeSpan duracion = horaCierre - horaInicio;
 
-            clsConexion conexion = new clsConexion();
-            conexion.auditarAcceso(usuario, horaInicio, horaCierre, duracion);
         }
     }
 }

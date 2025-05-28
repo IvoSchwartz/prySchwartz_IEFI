@@ -39,20 +39,23 @@
             this.dgvAuditoria.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvAuditoria.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvAuditoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAuditoria.Location = new System.Drawing.Point(91, 91);
+            this.dgvAuditoria.Location = new System.Drawing.Point(71, 73);
+            this.dgvAuditoria.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvAuditoria.Name = "dgvAuditoria";
             this.dgvAuditoria.RowHeadersWidth = 51;
             this.dgvAuditoria.RowTemplate.Height = 24;
-            this.dgvAuditoria.Size = new System.Drawing.Size(619, 269);
+            this.dgvAuditoria.Size = new System.Drawing.Size(464, 219);
             this.dgvAuditoria.TabIndex = 0;
             // 
             // frmAuditoria
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 394);
+            this.ClientSize = new System.Drawing.Size(600, 320);
             this.Controls.Add(this.dgvAuditoria);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmAuditoria";
+            this.Padding = new System.Windows.Forms.Padding(2, 52, 2, 2);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Auditoria";
             this.Load += new System.EventHandler(this.frmAuditoria_Load);
