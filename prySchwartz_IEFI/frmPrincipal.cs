@@ -15,10 +15,12 @@ namespace prySchwartz_IEFI
     public partial class frmPrincipal : MaterialForm
     {
         private string nombreUsuario;
-        public frmPrincipal(string usuario)
+        private string rolUsuario;
+        public frmPrincipal(string usuario, string rol)
         {
             InitializeComponent();
             nombreUsuario = usuario;
+            rolUsuario = rol;
 
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
@@ -49,6 +51,19 @@ namespace prySchwartz_IEFI
             clsConexion conexion = new clsConexion();
             conexion.auditarAcceso(nombreUsuario, ((frmInicioSesion)Application.OpenForms["frmInicioSesion"]).horaInicio, horaCierre, duracion);
             Environment.Exit(0);
+        }
+
+        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (rolUsuario.ToLower() == "administrador")
+            {
+                frmUsuarios formUsuarios = new frmUsuarios();
+                formUsuarios.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Acceso restringido solo a administradores.");
+            }
         }
     }
 }

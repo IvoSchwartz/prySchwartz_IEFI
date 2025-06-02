@@ -96,5 +96,32 @@ namespace prySchwartz_IEFI
 
             return dt;
         }
+
+        public string ObtenerRol(string usuario)
+        {
+            string rol = string.Empty;
+            string consulta = "SELECT Rol FROM Usuarios WHERE Usuario = @Usuario";
+
+            try
+            {
+                using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+                {
+                    conexion.Open();
+                    using (SqlCommand comando = new SqlCommand(consulta, conexion))
+                    {
+                        comando.Parameters.AddWithValue("@Usuario", usuario);
+                        rol = comando.ExecuteScalar()?.ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener el rol: " + ex.Message);
+            }
+
+            return rol;
+        }
+
+
     }
 }

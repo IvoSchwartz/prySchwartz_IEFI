@@ -99,18 +99,19 @@
             // usuariosToolStripMenuItem
             // 
             this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(163, 26);
+            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.usuariosToolStripMenuItem.Text = "Usuarios...";
+            this.usuariosToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(160, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(221, 6);
             // 
             // auditoriaToolStripMenuItem
             // 
             this.auditoriaToolStripMenuItem.Name = "auditoriaToolStripMenuItem";
-            this.auditoriaToolStripMenuItem.Size = new System.Drawing.Size(163, 26);
+            this.auditoriaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.auditoriaToolStripMenuItem.Text = "Auditoria...";
             this.auditoriaToolStripMenuItem.Click += new System.EventHandler(this.auditoriaToolStripMenuItem_Click);
             // 

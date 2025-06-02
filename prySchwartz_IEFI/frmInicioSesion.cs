@@ -17,6 +17,7 @@ namespace prySchwartz_IEFI
         private int intentosFallidos = 0;
         private string usuario = string.Empty;
         public DateTime horaInicio = DateTime.Now;
+        public string rol;
 
         public frmInicioSesion()
         {
@@ -34,7 +35,9 @@ namespace prySchwartz_IEFI
 
         private void btnAcceder_Click(object sender, EventArgs e)
         {
+            clsConexion conexion = new clsConexion();
             string usuario = txtUsuario.Text;
+            string rol = conexion.ObtenerRol(usuario);
             string contraseña = txtContraseña.Text;
 
             if (string.IsNullOrWhiteSpace(usuario) || string.IsNullOrWhiteSpace(contraseña))
@@ -43,7 +46,7 @@ namespace prySchwartz_IEFI
                 return;
             }
 
-            clsConexion conexion = new clsConexion();
+            
 
             if (conexion.VerificarLogin(usuario, contraseña))
             {
@@ -52,7 +55,7 @@ namespace prySchwartz_IEFI
                 MessageBox.Show("Bienvenido");
                 string nombreUsuario = usuario.Trim();
                 this.Hide();
-                frmPrincipal principal = new frmPrincipal(nombreUsuario);
+                frmPrincipal principal = new frmPrincipal(nombreUsuario,rol);
                 principal.ShowDialog();
                 this.Close();
             }
