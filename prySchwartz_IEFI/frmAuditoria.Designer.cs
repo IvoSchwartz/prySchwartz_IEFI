@@ -2,15 +2,8 @@
 {
     partial class frmAuditoria
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,12 +13,8 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region Código generado por el Diseñador de Windows Forms
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             this.dgvAuditoria = new System.Windows.Forms.DataGridView();
@@ -36,28 +25,25 @@
             // 
             this.dgvAuditoria.AllowUserToAddRows = false;
             this.dgvAuditoria.AllowUserToDeleteRows = false;
-            this.dgvAuditoria.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvAuditoria.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvAuditoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAuditoria.Location = new System.Drawing.Point(71, 73);
-            this.dgvAuditoria.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvAuditoria.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvAuditoria.Location = new System.Drawing.Point(3, 64);
             this.dgvAuditoria.Name = "dgvAuditoria";
+            this.dgvAuditoria.ReadOnly = true;
             this.dgvAuditoria.RowHeadersWidth = 51;
             this.dgvAuditoria.RowTemplate.Height = 24;
-            this.dgvAuditoria.Size = new System.Drawing.Size(464, 219);
+            this.dgvAuditoria.Size = new System.Drawing.Size(794, 383);
             this.dgvAuditoria.TabIndex = 0;
             // 
             // frmAuditoria
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 320);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.dgvAuditoria);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmAuditoria";
-            this.Padding = new System.Windows.Forms.Padding(2, 52, 2, 2);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Auditoria";
+            this.Text = "Auditoría de Accesos";
             this.Load += new System.EventHandler(this.frmAuditoria_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAuditoria)).EndInit();
             this.ResumeLayout(false);

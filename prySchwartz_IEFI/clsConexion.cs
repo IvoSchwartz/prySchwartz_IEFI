@@ -15,7 +15,7 @@ namespace prySchwartz_IEFI
 {
     public class clsConexion
     {
-        string cadenaConexion = @"Server=PC136;Database=Iefi;Trusted_Connection=True;";
+        string cadenaConexion = @"Server=IVO\SQLEXPRESS;Database=Iefi;Trusted_Connection=True;";
         public bool VerificarLogin(string usuario, string contraseña)
         {
             bool correcto = false;
@@ -47,7 +47,7 @@ namespace prySchwartz_IEFI
 
         public void auditarAcceso(string usuario, DateTime inicio, DateTime cierre, TimeSpan duracion)
         {
-            string consulta = "INSERT INTO HistorialAccesos (Usuario, FechayHoraDeInicio, FechayHoraDeCierre, Duracion) " +
+            string consulta = "INSERT INTO HistorialAccesos (Usuario, FechaHoraDeInicio, FechaHoraDeCierre, Duracion) " +
                               "VALUES (@Usuario, @Inicio, @Cierre, @Duracion)";
 
             try
@@ -122,6 +122,42 @@ namespace prySchwartz_IEFI
             return rol;
         }
 
+        public bool ExisteUsuario(string nombreUsuario)
+        {
+            using (SqlConnection conn = new SqlConnection(cadenaConexion))
+            {
+                conn.Open();
+                string query = "SELECT COUNT(*) FROM Usuarios WHERE Usuario = @usuario";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@usuario", nombreUsuario);
+                    int count = (int)cmd.ExecuteScalar();
+                    return count > 0;
+                }
+            }
+        }
+
+
+        public bool ejecutarAccion(string consulta)
+        {
+            try
+            {
+                using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+                {
+                    conexion.Open();
+                    using (SqlCommand comando = new SqlCommand(consulta, conexion))
+                    {
+                        comando.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al ejecutar acción: " + ex.Message);
+                return false;
+            }
+        }
 
     }
 }

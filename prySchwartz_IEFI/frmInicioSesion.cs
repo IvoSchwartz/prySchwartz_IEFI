@@ -15,9 +15,12 @@ namespace prySchwartz_IEFI
     public partial class frmInicioSesion : MaterialForm
     {
         private int intentosFallidos = 0;
-        private string usuario = string.Empty;
         public DateTime horaInicio = DateTime.Now;
+
+        private string usuario = string.Empty;
         public string rol;
+
+        clsConexion conexion = new clsConexion();
 
         public frmInicioSesion()
         {
@@ -35,14 +38,14 @@ namespace prySchwartz_IEFI
 
         private void btnAcceder_Click(object sender, EventArgs e)
         {
-            clsConexion conexion = new clsConexion();
-            string usuario = txtUsuario.Text;
-            string rol = conexion.ObtenerRol(usuario);
+            
+            string usuario = txtUsuario.Text.Trim();
+            string rol = conexion.ObtenerRol(usuario).Trim();
             string contraseña = txtContraseña.Text;
 
             if (string.IsNullOrWhiteSpace(usuario) || string.IsNullOrWhiteSpace(contraseña))
             {
-                MessageBox.Show("Complete todos los campos.");
+                MessageBox.Show("Complete todos los campos. ");
                 return;
             }
 
@@ -70,11 +73,6 @@ namespace prySchwartz_IEFI
                     Application.Exit();
                 }
             }
-        }
-
-        private void frmInicioSesion_FormClosing(object sender, FormClosingEventArgs e)
-        {
-
         }
     }
 }

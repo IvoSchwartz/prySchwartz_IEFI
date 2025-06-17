@@ -9,18 +9,21 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
+using System.IO;
 
 namespace prySchwartz_IEFI
 {
     public partial class frmPrincipal : MaterialForm
     {
-        private string nombreUsuario;
+        public string nombreUsuario;
         private string rolUsuario;
+
         public frmPrincipal(string usuario, string rol)
         {
             InitializeComponent();
             nombreUsuario = usuario;
             rolUsuario = rol;
+            CargarListas();
 
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
@@ -33,7 +36,7 @@ namespace prySchwartz_IEFI
 
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
-            lblUsuariosStatus.Text = $"Usuario: {nombreUsuario}";
+            lblUsuarioStatus.Text = $"Usuario: {nombreUsuario}";
             lblFechaStatus.Text = $"Fecha: {DateTime.Now.ToShortDateString()}";
         }
 
@@ -45,6 +48,7 @@ namespace prySchwartz_IEFI
 
         private void frmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
         {
+            GuardarListas();
             DateTime horaCierre = DateTime.Now;
             TimeSpan duracion = horaCierre - ((frmInicioSesion)Application.OpenForms["frmInicioSesion"]).horaInicio;
 
@@ -53,11 +57,18 @@ namespace prySchwartz_IEFI
             Environment.Exit(0);
         }
 
-        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void auditoríaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Abrir el formulario frmAuditoria cuando se haga click en Auditoría
+            frmAuditoria frm = new frmAuditoria();
+            frm.ShowDialog();
+        }
+        private void gestionDeUsuariosToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             if (rolUsuario.ToLower() == "administrador")
             {
-                frmUsuarios formUsuarios = new frmUsuarios();
+                frmGestionDeUsuarios formUsuarios = new frmGestionDeUsuarios();
                 formUsuarios.ShowDialog();
             }
             else
@@ -65,5 +76,55 @@ namespace prySchwartz_IEFI
                 MessageBox.Show("Acceso restringido solo a administradores.");
             }
         }
+
+        private void creacionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (rolUsuario.ToLower() == "administrador")
+            {
+                frmNuevaTarea crearLugarTarea = new frmNuevaTarea();
+                crearLugarTarea.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Acceso restringido. Solo los administradores pueden gestionar tareas y lugares.", "Acceso denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void gestionDeTareasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmGestionDeTareas gestionDeTareas = new frmGestionDeTareas(nombreUsuario);
+            gestionDeTareas.ShowDialog();
+        }
+
+        private void verTareasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmTareas verTareas = new frmTareas();
+            verTareas.ShowDialog();
+        }
+
+
+        public static class listas
+        {
+            
+            
+            public static List<string> ListaTareas = new List<string>();
+            public static List<string> ListaLugares = new List<string>();
+        }
+
+        public static void GuardarListas()
+        {
+            File.WriteAllLines("tareas.txt", listas.ListaTareas);
+            File.WriteAllLines("lugares.txt", listas.ListaLugares);
+        }
+
+        public static void CargarListas()
+        {
+            if (File.Exists("tareas.txt"))
+                listas.ListaTareas = File.ReadAllLines("tareas.txt").ToList();
+
+            if (File.Exists("lugares.txt"))
+                listas.ListaLugares = File.ReadAllLines("lugares.txt").ToList();
+        }
+
     }
 }

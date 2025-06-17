@@ -29,7 +29,7 @@ namespace prySchwartz_IEFI
         private void frmAuditoria_Load(object sender, EventArgs e)
         {
             clsConexion conexion = new clsConexion();
-            dgvAuditoria.DataSource = conexion.ejecutarConsulta("SELECT * FROM HistorialAccesos ORDER BY FechayHoraDeInicio DESC");
+            dgvAuditoria.DataSource = conexion.ejecutarConsulta("SELECT * FROM HistorialAccesos ORDER BY FechaHoraDeInicio DESC");
         }
     }
 }
